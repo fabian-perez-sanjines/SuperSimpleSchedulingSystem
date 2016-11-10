@@ -26,7 +26,7 @@ import com.s4.service.StudentService;
  * @author Fabian Perez
  * 
  */
-@Path("/student")
+@Path("/students")
 @Produces("application/json")
 public class StudentController {
 
@@ -99,7 +99,7 @@ public class StudentController {
 	 * @return REGISTERED if it worked.
 	 */
 	@POST
-	@Path("/{id}/register/{code}")
+	@Path("/{id}/classes/{code}")
 	public Response post(@PathParam("id") Long id, @PathParam("code") Long code) {
 		Response response = Response.status(404).build();
 		if (studentService.registerClass(id, code))

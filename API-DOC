@@ -1,7 +1,7 @@
 API
 SERVICES
 *Student
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/student
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/students
 	Returns all the students.
 		[{
 		    "id": 5096363633147904,
@@ -21,7 +21,7 @@ SERVICES
 		    "firstname": "Mary"
 		}]
 
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/student?lastname=Smith
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/students?lastname=Smith
 	Returns all the students that have lastname smith.
 		[{
 		    "id": 5644406560391168,
@@ -33,7 +33,7 @@ SERVICES
 		    "firstname": "Mary"
 		}]
 
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/student/5644406560391168
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/students/5644406560391168
 	Returns the student that have id 5644406560391168.
 		{
 		    "id": 5644406560391168,
@@ -41,7 +41,7 @@ SERVICES
 		    "firstname": "John"
 		}
 
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/student/5096363633147904/classes	
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/students/5096363633147904/classes	
 	Returns all the classes for the student with id 5096363633147904
 		[{
 		    "code": 5629499534213120,
@@ -53,7 +53,7 @@ SERVICES
 		    "description": "algo description"
 		}]
 
-	POST http://1-dot-supersimpleschedulingsystem.appspot.com/api/student
+	POST http://1-dot-supersimpleschedulingsystem.appspot.com/api/students
 	Content
 		{
 		    "lastname": "Amstrong",
@@ -66,7 +66,7 @@ SERVICES
 		    "firstname": "Jac"
 		}
 
-	PUT http://1-dot-supersimpleschedulingsystem.appspot.com/api/student/5096363633147904
+	PUT http://1-dot-supersimpleschedulingsystem.appspot.com/api/students/5096363633147904
 	Content
 		{
 		    "lastname": "Amstrong",
@@ -79,16 +79,16 @@ SERVICES
 		    "firstname": "Jack"
 		}	
 
-	DELETE http://1-dot-supersimpleschedulingsystem.appspot.com/api/student/5096363633147904
+	DELETE http://1-dot-supersimpleschedulingsystem.appspot.com/api/students/5096363633147904
 	Returns DELETED if the student with the id 5096363633147904 was deleted
 		DELETED
 
-	POST http://1-dot-supersimpleschedulingsystem.appspot.com/api/student/5654313976201216/register/5649391675244544	
+	POST http://1-dot-supersimpleschedulingsystem.appspot.com/api/students/5654313976201216/classes/5649391675244544	
 	Register de user with the id 5654313976201216 to the class with the code 5649391675244544
 		REGISTERED
 
 *Class
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/class
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/classes
 	Returns all the classes.
 		[{
 		    "code": 5629499534213120,
@@ -100,7 +100,7 @@ SERVICES
 		    "description": "algo description"
 		}]
 
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/class?title=Algorithms
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/classes?title=Algorithms
 	Returns all the classes that have title Algorithms.
 		[{
 		    "code": 5649391675244544,
@@ -108,7 +108,7 @@ SERVICES
 		    "description": "algo description"
 		}]
 
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/class/5649391675244544
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/classes/5649391675244544
 	Returns the class that have id 5649391675244544.
 		{
 		    "code": 5649391675244544,
@@ -116,7 +116,7 @@ SERVICES
 		    "description": "algo description"
 		}
 
-	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/class/5649391675244544/students	
+	GET http://1-dot-supersimpleschedulingsystem.appspot.com/api/classes/5649391675244544/students	
 	Returns all the students for the class with id 5649391675244544
 		[{
 		    "id": 5096363633147904,
@@ -128,7 +128,7 @@ SERVICES
 		    "firstname": "Peter"
 		}]
 
-	POST http://1-dot-supersimpleschedulingsystem.appspot.com/api/class
+	POST http://1-dot-supersimpleschedulingsystem.appspot.com/api/classes
 	Content
 		{
 		    "title": "Algorithms",
@@ -141,7 +141,7 @@ SERVICES
 		    "description": "algo description"
 		}
 
-	PUT http://1-dot-supersimpleschedulingsystem.appspot.com/api/class/5649391675244544
+	PUT http://1-dot-supersimpleschedulingsystem.appspot.com/api/classes/5649391675244544
 	Content
 		{
 		    "title": "Algorithms",
@@ -154,6 +154,6 @@ SERVICES
 		    "description": "algorithm description"
 		}	
 
-	DELETE http://1-dot-supersimpleschedulingsystem.appspot.com/api/class/5649391675244544
+	DELETE http://1-dot-supersimpleschedulingsystem.appspot.com/api/classes/5649391675244544
 	Returns DELETED if the student with the id 5649391675244544 was deleted
 		DELETED

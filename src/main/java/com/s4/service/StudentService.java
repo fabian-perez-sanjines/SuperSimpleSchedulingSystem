@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.s4.data.access.layer.ClassManager;
 import com.s4.data.access.layer.StudentManager;
 import com.s4.entity.ClassEntity;
 import com.s4.entity.StudentEntity;
@@ -20,11 +21,13 @@ import com.s4.model.StudentMapper;
 public class StudentService {
 
 	private StudentManager studentManager;
+	private ClassManager classManager;
 
 	/**
 	 * Constructor that instantiate studentManager.
 	 */
 	public StudentService() {
+		studentManager = new StudentManager();
 		studentManager = new StudentManager();
 	}
 
@@ -100,7 +103,15 @@ public class StudentService {
 	 * @return true if the user could be registered
 	 */
 	public boolean registerClass(Long id, Long code) {
-		return studentManager.register(id, code);
+		ClassService classService = new ClassService();
+		StudentMapper studentEntity = get(id);
+		ClassMapper classMapper = classService.get(id);
+		if (studentEntity == null || classMapper == null)
+			return false;
+		if (classManager.register(code, id))
+			return studentManager.register(id, code);
+
+		return true;
 	}
 
 	/**

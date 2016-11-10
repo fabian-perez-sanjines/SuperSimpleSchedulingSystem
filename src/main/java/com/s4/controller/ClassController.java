@@ -26,7 +26,7 @@ import com.s4.service.ClassService;
  * @author Fabian Perez
  * 
  */
-@Path("/class")
+@Path("/classes")
 @Produces("application/json")
 public class ClassController {
 

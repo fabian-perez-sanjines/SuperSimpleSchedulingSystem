@@ -156,26 +156,27 @@ public class ClassManager {
 	 * @return the list of classes with their respective generated ids, null if
 	 *         there is a problem.
 	 */
-	public Key<ClassEntity> register(Long code, Key<StudentEntity> id) {
+	public boolean register(Long code, Long id) {
 		log.info(MessageFormat.format("The method register was called for code = {0}", code));
-		ClassEntity classEntity = get(code);
-		if (classEntity != null) {
-			try {
+		try {
+			ClassEntity classEntity = get(code);
+			Key<StudentEntity> studentKey = Key.create(StudentEntity.class, id);
+			if (classEntity != null) {
+
 				List<Key<StudentEntity>> studentsKeys = classEntity.getStudents();
-				if (studentsKeys == null)
-					studentsKeys = new ArrayList<>();
-				if (!studentsKeys.contains(id)) {
-					studentsKeys.add(id);
+				if (!studentsKeys.contains(studentKey)) {
+					studentsKeys.add(studentKey);
 					classEntity.setStudents(studentsKeys);
 					update(classEntity);
-					return Key.create(ClassEntity.class, code);
+					return true;
 				}
-
-			} catch (Exception exception) {
-				log.warning(MessageFormat.format(
-						"Error trying to register a student with id = {0} in the class with code = {1}", id, code));
 			}
+
+		} catch (Exception exception) {
+			log.warning(MessageFormat
+					.format("Error trying to register a student with id = {0} in the class with code = {1}", id, code));
 		}
-		return null;
+
+		return false;
 	}
 }

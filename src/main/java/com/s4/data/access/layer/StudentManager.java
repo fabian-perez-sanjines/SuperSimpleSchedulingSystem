@@ -160,44 +160,24 @@ public class StudentManager {
 	 * @return true if the student was registered, false if there is a problem.
 	 */
 	public boolean register(Long id, Long code) {
-		log.info(MessageFormat.format("The method register was called for code = {0} and id = {1}", code, id));
-		StudentEntity student = get(id);
-		if (student != null) {
-			ClassManager classManager = new ClassManager();
-			Key<StudentEntity> studentKey = Key.create(StudentEntity.class, id);
-			Key<ClassEntity> classKey = classManager.register(code, studentKey);
-			if (classKey != null)
-				return register(student, classKey);
-		}
-		return false;
-	}
-
-	/**
-	 * Method that register a given student in a class with the given key.
-	 * 
-	 * @param studentEntity
-	 *            student to be registered.
-	 * @param classKey
-	 *            to identify the class where the student will be registered.
-	 * 
-	 * @return true if the student was registered, false if there is a problem.
-	 */
-	private boolean register(StudentEntity studentEntity, Key<ClassEntity> classKey) {
-		log.info("The method register was called");
+		log.info(MessageFormat.format("The method register was called for id = {0}", id));
 		try {
-			List<Key<ClassEntity>> classKeys = studentEntity.getClasses();
-			if (classKeys == null)
-				classKeys = new ArrayList<>();
-			if (!classKeys.contains(classKey)) {
-				classKeys.add(classKey);
-				studentEntity.setClasses(classKeys);
-				update(studentEntity);
-				return true;
+			StudentEntity studentEntity = get(id);
+			Key<ClassEntity> classKey = Key.create(ClassEntity.class, code);
+			if (studentEntity != null) {
+
+				List<Key<ClassEntity>> classKeys = studentEntity.getClasses();
+				if (!classKeys.contains(classKey)) {
+					classKeys.add(classKey);
+					studentEntity.setClasses(classKeys);
+					update(studentEntity);
+					return true;
+				}
 			}
 
 		} catch (Exception exception) {
-			log.warning(MessageFormat.format("Error trying to register a student with id = {0} in the class",
-					studentEntity.getId()));
+			log.warning(MessageFormat
+					.format("Error trying to register a student with id = {0} in the class with code = {1}", id, code));
 		}
 
 		return false;
